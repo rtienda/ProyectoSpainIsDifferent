@@ -1,0 +1,9 @@
+package enums;
+
+public enum TipoEvento {
+	CRISIS_FINANCIERA,
+	PANDEMIA,
+	CRISIS_ENERGETICA,
+	CRISIS_DE_TRANSPORTES,
+	HUELGA_GENERAL
+}
