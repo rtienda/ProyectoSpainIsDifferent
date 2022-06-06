@@ -50,9 +50,12 @@ public class PantallaMenuPrincipal extends JPanel{
 				ArrayList<Evento> eventosSurgidos = new ArrayList<Evento>();
 				//---------------------------------------------------------------------------------------
 				//Añadir nombrePartida
+				/*
 				String nombrePartida="";
 				new Partida(0,10000,(byte)60,ventana.usuarioLogado,nombrePartida,decisionYaTomadas,megaProyectosConstruidos,eventosSurgidos);
-				ventana.irAPantalla("nuevaPartida");
+				*/
+				ventana.irAPantalla("explicacionJuego");
+				
 			}
 		});
 		

@@ -2,6 +2,8 @@ package clases;
 
 import java.util.ArrayList;
 
+import exceptions.TextoVacioException;
+
 public class Partida extends ElementoResultado{
 
 	private Usuario jugador;
@@ -13,10 +15,13 @@ public class Partida extends ElementoResultado{
 	
 	public Partida(int puntosCorrupcion, int presupuesto, byte popularidad, Usuario jugador, String nombrePartida,
 			ArrayList<DecisionTomada> decisionesYaTomadas, ArrayList<MegaProyectos> megaProyectosConstruidos,
-			ArrayList<Evento> eventosSurgidos) {
-		super(puntosCorrupcion, presupuesto, popularidad);
+			ArrayList<Evento> eventosSurgidos) throws TextoVacioException {
+		super(puntosCorrupcion=0, presupuesto=10000, popularidad=60);
 		this.jugador = jugador;
 		this.nombrePartida = nombrePartida;
+		if(nombrePartida.isBlank()) {
+			throw new TextoVacioException("El nombre de la partida no puede estar vacio");
+		}
 		this.decisionesYaTomadas = decisionesYaTomadas;
 		this.megaProyectosConstruidos = megaProyectosConstruidos;
 		this.eventosSurgidos = eventosSurgidos;

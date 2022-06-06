@@ -6,12 +6,14 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import clases.Partida;
 import clases.Usuario;
 
 public class Ventana extends JFrame{
 
 	private JPanel pantallaActual;
 	protected Usuario usuarioLogado;
+	protected Partida partida;
 	public Ventana(){
 		//this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		//this.setUndecorated(true);
@@ -44,8 +46,22 @@ public class Ventana extends JFrame{
 		case "menuPrincipal":
 			this.pantallaActual=new PantallaMenuPrincipal(this);
 			break;
+		case "explicacionJuego":
+			this.pantallaActual=new PantallaExplicacionJuego(this);
+			break;
+		}
+		
+		this.pantallaActual.setVisible(true);
+		this.setContentPane(pantallaActual);
+	}
+	public void irAPantalla(String nombrePantalla,Partida p) {
+		this.pantallaActual.setVisible(false);
+		this.pantallaActual=null;
+		
+		switch(nombrePantalla) {
 		case "nuevaPartida":
-			this.pantallaActual=new PantallaNuevaPartida(this);
+			this.pantallaActual=new PantallaNuevaPartida(this,p);
+			break;
 		}
 		this.pantallaActual.setVisible(true);
 		this.setContentPane(pantallaActual);
