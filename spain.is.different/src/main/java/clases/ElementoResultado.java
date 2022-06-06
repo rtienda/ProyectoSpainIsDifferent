@@ -1,6 +1,8 @@
 package clases;
 
-abstract class ElementoResultado {
+import utils.Globals;
+
+abstract public class ElementoResultado {
 	private int puntosCorrupcion;
 	private int presupuesto;
 	private byte popularidad;
@@ -14,20 +16,27 @@ abstract class ElementoResultado {
 	public int getPuntosCorrupcion() {
 		return puntosCorrupcion;
 	}
-	public void setPuntosCorrupcion(int puntosCorrupcion) {
-		this.puntosCorrupcion = puntosCorrupcion;
+
+	public void sumarPuntosCorrupcion(float pc) {
+		if(!Globals.cheating) {
+			this.puntosCorrupcion+=pc;
+		}
 	}
 	public int getPresupuesto() {
 		return presupuesto;
 	}
-	public void setPresupuesto(int presupuesto) {
-		this.presupuesto = presupuesto;
+	public void sumarPresupuesto(float pr) {
+		if(!Globals.cheating) {
+			this.puntosCorrupcion+=pr;
+		}
 	}
 	public byte getPopularidad() {
 		return popularidad;
 	}
-	public void setPopularidad(byte popularidad) {
-		this.popularidad = popularidad;
+	public void sumarPopularidad(byte po) {
+		if(!Globals.cheating) {
+			this.puntosCorrupcion+=po;
+		}
 	}
 	
 	

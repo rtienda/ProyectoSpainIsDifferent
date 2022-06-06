@@ -7,7 +7,7 @@ import java.sql.Statement;
 
 public abstract class ConexionBD {
 	//He cambiado la base de datos para que me funcione a mi ya que tengo una contraseña diferente y nombres diferentes
-	private final static String cadenaConexion = "jdbc:mysql://localhost:3306/db1daw";
+	private final static String cadenaConexion = "jdbc:mysql://localhost:3306/spainisdifferent";
 	private final static String usuarioBD = "root";
 	private final static String passwordBD = "root";
 	private static Connection conexion; // singleton

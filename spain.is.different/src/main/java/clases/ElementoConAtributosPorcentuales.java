@@ -1,6 +1,6 @@
 package clases;
 
-abstract class ElementoConAtributosPorcentuales extends ElementoResultado{
+abstract public class ElementoConAtributosPorcentuales extends ElementoResultado{
 
 
 	private float modificadorPresupuesto;
