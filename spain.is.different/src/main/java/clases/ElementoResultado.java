@@ -27,7 +27,11 @@ abstract public class ElementoResultado {
 	}
 	public void sumarPresupuesto(float pr) {
 		if(!Globals.cheating) {
-			this.puntosCorrupcion+=pr;
+			if(this.presupuesto+pr>=0) {
+				this.presupuesto+=pr;
+			}else {
+				this.presupuesto=0;
+			}
 		}
 	}
 	public byte getPopularidad() {
@@ -35,7 +39,13 @@ abstract public class ElementoResultado {
 	}
 	public void sumarPopularidad(byte po) {
 		if(!Globals.cheating) {
-			this.puntosCorrupcion+=po;
+			if(popularidad+po>=0&&popularidad+po<=100) {
+				this.popularidad+=po;
+			}else if (popularidad+po<0){
+				this.popularidad=0;
+			}else {
+				this.popularidad=100;
+			}
 		}
 	}
 	
