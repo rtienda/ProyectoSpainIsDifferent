@@ -12,8 +12,12 @@ public class Partida extends ElementoResultado{
 	private ArrayList<MegaProyectos> megaProyectosConstruidos;
 	private ArrayList<Evento> eventosSurgidos;
 	private boolean estado=false;
-	private ArrayList<Decision> decision;
+	private ArrayList<Decision> decision = new ArrayList<Decision>();
 
+	public Partida() {
+		super();
+	}
+	
 	
 	public Partida(int puntosCorrupcion, int presupuesto, byte popularidad, Usuario jugador, String nombrePartida,
 			ArrayList<DecisionTomada> decisionesYaTomadas, ArrayList<MegaProyectos> megaProyectosConstruidos,
@@ -53,26 +57,41 @@ public class Partida extends ElementoResultado{
 	public void setMegaProyectosConstruidos(ArrayList<MegaProyectos> megaProyectosConstruidos) {
 		this.megaProyectosConstruidos = megaProyectosConstruidos;
 	}
+	/*
 	public ArrayList<Evento> getEventosSurgidos() {
 		return eventosSurgidos;
 	}
 	public void setEventosSurgidos(ArrayList<Evento> eventosSurgidos) {
 		this.eventosSurgidos = eventosSurgidos;
 	}
+	*/
 	
 	public void ronda() {
-		do {
-		
-			
-		}while(this.estado=false||decision.isEmpty());
+		Decision decision1 = new Decision();
+		setDecision(decision1.decisionesListado());
 		
 	}
+	
+	
 	
 	public boolean hasPerdido() {
 		if(getPresupuesto()==0||getPopularidad()==0) {
 			this.estado=true;
 		}
 		return this.estado;
+	}
+
+	public ArrayList<Decision> getDecisiones() {
+		return getDecision();
+		
+	}
+
+	public ArrayList<Decision> getDecision() {
+		return decision;
+	}
+
+	public void setDecision(ArrayList<Decision> decision) {
+		this.decision = decision;
 	}
 	
 	

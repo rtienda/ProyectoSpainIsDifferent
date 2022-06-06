@@ -13,6 +13,8 @@ public class Respuesta extends ElementoResultado{
 		this.modificador = modificador;
 	}
 
+	
+
 	public String getRespuesta() {
 		return respuesta;
 	}
@@ -27,6 +29,13 @@ public class Respuesta extends ElementoResultado{
 
 	public void setModificador(String modificador) {
 		this.modificador = modificador;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "Respuesta [respuesta=" + respuesta + ", modificador=" + modificador + "]"+super.toString();
 	}
 	
 	

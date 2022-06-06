@@ -13,6 +13,8 @@ abstract public class ElementoResultado {
 		this.presupuesto = presupuesto;
 		this.popularidad = popularidad;
 	}
+	public ElementoResultado() {
+	}
 	public int getPuntosCorrupcion() {
 		return puntosCorrupcion;
 	}
@@ -48,6 +50,12 @@ abstract public class ElementoResultado {
 			}
 		}
 	}
+	@Override
+	public String toString() {
+		return "ElementoResultado [puntosCorrupcion=" + puntosCorrupcion + ", presupuesto=" + presupuesto
+				+ ", popularidad=" + popularidad + "]";
+	}
+	
 	
 	
 }

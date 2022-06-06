@@ -106,6 +106,7 @@ public class PantallaExplicacionJuego extends JPanel{
 				Partida p=new Partida(0,10000,(byte)60,ventana.usuarioLogado,nombrePartida,decisionYaTomadas,megaProyectosConstruidos,eventosSurgidos);
 				System.out.println("esta?");
 				ventana.irAPantalla("nuevaPartida",p);
+				p.ronda();
 				}catch(TextoVacioException e22) {
 					JOptionPane.showMessageDialog(ventana, e22.getMessage(), "Error",
 							JOptionPane.ERROR_MESSAGE);
