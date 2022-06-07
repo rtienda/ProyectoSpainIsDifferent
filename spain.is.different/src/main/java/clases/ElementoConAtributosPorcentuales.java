@@ -7,7 +7,7 @@ abstract public class ElementoConAtributosPorcentuales extends ElementoResultado
 	private float modificadorPopularidad;
 	private float modificadorCorrupcion;
 	
-	public ElementoConAtributosPorcentuales(int puntosCorrupcion, int presupuesto, byte popularidad,
+	public ElementoConAtributosPorcentuales(float puntosCorrupcion, float presupuesto, byte popularidad,
 			float modificadorPresupuesto, float modificadorPopularidad, float modificadorCourrupcion) {
 		super(puntosCorrupcion, presupuesto, popularidad);
 		this.modificadorPresupuesto = modificadorPresupuesto;

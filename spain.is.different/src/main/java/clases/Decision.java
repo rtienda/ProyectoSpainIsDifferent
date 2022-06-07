@@ -19,7 +19,7 @@ public class Decision extends ElementoConAtributosPorcentuales{
 		super();
 	}
 	
-	public Decision(short idPregunta,int puntosCorrupcion, int presupuesto, byte popularidad, float modificadorPresupuesto,
+	public Decision(short idPregunta,float puntosCorrupcion, float presupuesto, byte popularidad, float modificadorPresupuesto,
 			float modificadorPopularidad, float modificadorCorrupcion, String pregunta,
 			ArrayList<Respuesta> respuestas/*, String textoEvento*/) {
 		super(puntosCorrupcion, presupuesto, popularidad, modificadorPresupuesto, modificadorPopularidad,
