@@ -101,19 +101,23 @@ public class Decision extends ElementoConAtributosPorcentuales{
 				
 				ResultSet cursor2 = query2
 						.executeQuery("SELECT * FROM respuesta WHERE decision_id =" + this.idPregunta + ";");
+				//System.out.println("id: "+idPregunta);
+				respuestas = new ArrayList<Respuesta>();
 				while(cursor2.next()) {
-					
+						
 						Respuesta respuesta = new Respuesta(cursor2.getInt("puntosCorrupcion"),cursor2.getInt("presupuesto"), cursor2.getByte("popularidad"), cursor2.getString("texto"), cursor2.getString("modificadorCodigo"));
 						respuestas.add(respuesta);
 						//System.out.println(respuesta);
-						System.out.println("id: "+idPregunta);
-						System.out.println(respuestas);
-						System.out.println("tamaño: "+respuestas.size());
+						
+						//System.out.println(respuestas);
+						//System.out.println("tamaño: "+respuestas.size());
 
 				}
 				Decision decision1= new Decision(this.idPregunta,this.getPuntosCorrupcion(),this.getPresupuesto(),this.getPopularidad(),
 						getModificadorPresupuesto(),getModificadorPopularidad(),getModificadorCorrupcion(),this.pregunta,respuestas);
 				p.getDecision().add(decision1);
+				//System.out.println("el tamaño es: "+respuestas.size()+ " -------");
+				respuestas=null;
 				//System.out.println(p.getDecision());
 				cursor2.close();
 
