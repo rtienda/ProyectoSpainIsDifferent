@@ -17,10 +17,21 @@ import clases.Evento;
 import clases.MegaProyectos;
 import clases.Partida;
 
+/**
+ * Clase PantallaMenuPrincipal clase que extiende JPanel y que consiste en mostrar el menu del programa y sus distintas opciones
+ * @author Rafa
+ *
+ */
 public class PantallaMenuPrincipal extends JPanel{
-
+	/**
+	 * Variable ventana  de tipo Ventana donde se guardará la variable JFrame que vendrá pasado por las funciones.
+	 */
 	private Ventana ventana;
 
+	/**
+	 * Constructor PantallaMenuPrincipal que recibe por parametros la variable de tipo Ventana que es la clase del JFrame.
+	 * @param v variable de tipo Ventana que recoge la interfaz grafica de la ventana en la que se situara esta interfaz gráfica.
+	 */
 	public PantallaMenuPrincipal(Ventana v) {
 		this.ventana=v;
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -41,21 +52,13 @@ public class PantallaMenuPrincipal extends JPanel{
 		
 		JButton botonNuevaPartida = new JButton("Nueva Partida");
 		botonNuevaPartida.addMouseListener(new MouseAdapter() {
+			
+			/**
+			 * Funcion mouseClicked que se ejecuta cuando recibe el evento del raton en su JButton por su parametro e. Esta funcion lleva al usuario a la pagina previa a la partida, llamada PantallaExplicacionJuego.
+			 */
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				//Crear nueva partida aqui
-				//iniciar array list
-				ArrayList<DecisionTomada> decisionYaTomadas = new ArrayList<DecisionTomada>();
-				ArrayList<MegaProyectos> megaProyectosConstruidos = new ArrayList<MegaProyectos>();
-				ArrayList<Evento> eventosSurgidos = new ArrayList<Evento>();
-				//---------------------------------------------------------------------------------------
-				//Añadir nombrePartida
-				/*
-				String nombrePartida="";
-				new Partida(0,10000,(byte)60,ventana.usuarioLogado,nombrePartida,decisionYaTomadas,megaProyectosConstruidos,eventosSurgidos);
-				*/
 				ventana.irAPantalla("explicacionJuego");
-				
 			}
 		});
 		

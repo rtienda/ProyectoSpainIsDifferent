@@ -25,14 +25,30 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.Color;
 
-
+/**
+ * Clase PantallaLogin es una clase que extendiende JPanel y es la pantalla inicial del programa que nos permite iniciar sesion
+ * @author Rafa
+ *
+ */
 public class PantallaLogin extends JPanel{
+	/**
+	 * Variable ventana  de tipo Ventana donde se guardará la variable JFrame que vendrá pasado por las funciones.
+	 */
 	private Ventana ventana;
+	/**
+	 * Variable campoEmail de tipo JTextField donde se recogerá el dato del email del usuario.
+	 */
 	private JTextField campoEmail;
+	/**
+	 * Variable campoContraseña de tipo JPasswordField donde se recogerá el dato de la contraseña del usuario.
+	 */
 	private JPasswordField campoContraseña;
 
 	
-	
+	/**
+	 * Constructor PantallaLogin que recibe por parametros la variable de tipo Ventana que es la clase del JFrame.
+	 * @param v variable de tipo Ventana que recoge la interfaz grafica de la ventana en la que se situara esta interfaz gráfica.
+	 */
 		public PantallaLogin(Ventana v) {
 			this.ventana=v;
 			GridBagLayout gridBagLayout = new GridBagLayout();
@@ -107,6 +123,11 @@ public class PantallaLogin extends JPanel{
 			
 			JButton botonLogin = new JButton("Inicia sesion");
 			botonLogin.addMouseListener(new MouseAdapter() {
+				
+				
+				/**
+				 * Funcion mouseClicked que se ejecuta cuando recibe el evento del raton en su JButton por su parametro e. Esta funcion inicializa un objeto de clase Usuario en la partida y se lo pasa a la pantalla de menu partida
+				 */
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					String email=campoEmail.getText();
@@ -135,6 +156,12 @@ public class PantallaLogin extends JPanel{
 			
 			JButton botonRegistrar = new JButton("Registrate");
 			botonRegistrar.addMouseListener(new MouseAdapter() {
+				
+				
+				
+				/**
+				 * Funcion mouseClicked que se ejecuta cuando recibe el evento del raton en su JButton por su parametro e. Esta funcion navega al usuario a la pantalla de PantallaRegistro.
+				 */
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					ventana.irAPantalla("registro");

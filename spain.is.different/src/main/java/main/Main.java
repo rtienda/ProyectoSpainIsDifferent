@@ -18,7 +18,6 @@ public class Main {
 			if(args[i].equals("h")||args[i].equals("help")||args[i].equals("?")) {
 				System.out.println("Juego Spain is different \nArgumento posible:");
 				System.out.println("\n\t-truco te permite jugar sin poder perder, todas las decisiones no tienen consecuencias negativas ni en presupuesto ni en popularidad");
-				//salir del break
 				System.exit(0);
 			}
 		}
