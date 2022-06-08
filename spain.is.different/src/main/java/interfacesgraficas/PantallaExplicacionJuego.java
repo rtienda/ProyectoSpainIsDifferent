@@ -23,10 +23,23 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
+/**
+ * Clase PantallaExplicacionJuego es un clase que extiende JPanel y aparece al pinchar nueva partida en el menu principal, aqui se le cuenta al usuario como funciona el juego y le pide que introduzca el nombre de la partida
+ * @author Rafa
+ *
+ */
 public class PantallaExplicacionJuego extends JPanel{
-
+	/**
+	 * Variable ventana  de tipo Ventana donde se guardará la variable JFrame que vendrá pasado por las funciones.
+	 */
 	private Ventana ventana;
+	/**
+	 * Variable textField de tipo JTextField donde se recogerá el dato del nombre de la partida.
+	 */
 	private JTextField textField;
+	/**
+	 * Variable explicacion de tipo String donde guarda la cadena de caracteres que explica el funcionamiento básico del juego.
+	 */
 	private String explicacion="<html><p align=\"center\">Spain is different es un juego de toma de decisiones y gestion de recursos,"
 			+ " jugaras en el papel de presidente o del propio gobierno y tendras que evitar que España "
 			+ "se vaya a la quiebra(evitando que el presupuesto llegue a 0) y evitando que te echen del poder"
@@ -39,7 +52,10 @@ public class PantallaExplicacionJuego extends JPanel{
 			+ " decisiones y que tienen un coste inicial monetario y tendran efectos positivos en tu puntuacion.</p></br></br>"
 			+ "<p align=\"center\">¡Sin mas dilacion, a jugar!</p></html>";
 	
-	
+	/**
+	 * Constructor PantallaExplicacionJuego que recibe por parametros la variable de tipo Ventana que es la clase del JFrame.
+	 * @param v variable de tipo Ventana que recoge la interfaz grafica de la ventana en la que se situara esta interfaz gráfica.
+	 */
 	public PantallaExplicacionJuego (Ventana v) {
 		this.ventana=v;
 
@@ -89,6 +105,10 @@ public class PantallaExplicacionJuego extends JPanel{
 		
 		JButton btnNewButton = new JButton("Iniciar Partida");
 		btnNewButton.addMouseListener(new MouseAdapter() {
+			
+			/**
+			 * Funcion mouseClicked que se ejecuta cuando recibe el evento del raton en su JButton por su parametro e. Esta funcion inicializa los ArrayList de partida y crea el objeto Partida y se lo pasa a la pantalla de nueva partida
+			 */
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				try {
@@ -104,12 +124,10 @@ public class PantallaExplicacionJuego extends JPanel{
 				
 				
 				Partida p=new Partida(0,10000,(byte)60,ventana.usuarioLogado,nombrePartida,decisionYaTomadas,megaProyectosConstruidos,eventosSurgidos);
-				System.out.println("esta?");
 				ventana.irAPantalla("nuevaPartida",p);
 				p.ronda();
 				}catch(TextoVacioException e22) {
-					JOptionPane.showMessageDialog(ventana, e22.getMessage(), "Error",
-							JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(ventana, e22.getMessage(), "Error",JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});

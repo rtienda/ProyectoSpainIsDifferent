@@ -4,12 +4,13 @@ import interfacesgraficas.Ventana;
 import utils.Globals;
 
 public class Main {
-
+	
+	/**
+	 * Main del programa principal del juego Spain Is Different
+	 * @param args se le pasara un string de ayuda como help, h o ?. Podra quedarse vacio o podra iniciarse con -truco
+	 */
 	public static void main(String[] args) {
-		//El for de buscar, si encuentras -cheating, entonces pones esa global a true.
-		//A la hora de llamar a los setter de 
-		// TODO Auto-generated method stub
-		//System.out.println("Todo esta bien");
+		//Aqui comprobamos si tiene algun valor pasado por argumentos.
 		for(byte i=0;i<args.length;i++) {
 			if(args[i].equals("-truco")) {
 				Globals.cheating=true;
@@ -21,6 +22,7 @@ public class Main {
 				System.exit(0);
 			}
 		}
+		//Llamamos a la funcion Ventana() creandola asi y ejecutando las interfaces graficas
 		Ventana ventana=new Ventana();
 	}
 

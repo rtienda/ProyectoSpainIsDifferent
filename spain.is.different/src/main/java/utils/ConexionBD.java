@@ -27,7 +27,11 @@ public abstract class ConexionBD {
 	 * Variable conexion de tipo Connection
 	 */
 	private static Connection conexion; // singleton
-
+	
+	/**
+	 * Funcion conectar que devuelve un valor Statement y crea la conexion con la bbdd
+	 * @return
+	 */
 	public static Statement conectar() {
 		try {
 			if (conexion == null) {
@@ -41,7 +45,9 @@ public abstract class ConexionBD {
 		}
 	}
 	
-	
+	/**
+	 * Funcion desconectar que no devuelve ningun valor y convierte conexion a null. 
+	 */
 	public static void desconectar() {
 		if(conexion!=null) {
 			try {
