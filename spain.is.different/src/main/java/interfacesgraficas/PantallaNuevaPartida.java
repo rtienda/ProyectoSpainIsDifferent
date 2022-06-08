@@ -25,7 +25,7 @@ public class PantallaNuevaPartida extends JPanel{
 
 	private Ventana ventana;
 	private ArrayList<Decision> decisiones;
-	private ArrayList<Respuesta> respuestas;
+	protected ArrayList<Respuesta> respuestas;
 	private String pregunta;
 	private String respuesta1;
 	private String respuesta2;
@@ -35,6 +35,9 @@ public class PantallaNuevaPartida extends JPanel{
 	private JButton respuesta2Label = new JButton();
 	private JButton respuesta3Label = new JButton();
 	private JLabel presupuesto = new JLabel();
+	private JLabel popularidad = new JLabel();
+	private JLabel corrupcion = new JLabel();
+
 	
 	public PantallaNuevaPartida (Ventana v,Partida p) {
 		this.ventana=v;
@@ -49,7 +52,7 @@ public class PantallaNuevaPartida extends JPanel{
 		respuesta2=respuestas.get(1).getRespuesta();
 		respuesta3=respuestas.get(2).getRespuesta();
 		*/
-		siguientePaso(p,(byte) 3);
+		siguientePaso(p);
 		
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0, 0, 32, 26, 0, 0, 26, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -82,12 +85,12 @@ public class PantallaNuevaPartida extends JPanel{
 		gbc_lblNewLabel_2.gridy = 1;
 		add(lblNewLabel_2, gbc_lblNewLabel_2);
 		
-		JLabel lblNewLabel_5 = new JLabel(String.valueOf(p.getPopularidad())+" %");
-		GridBagConstraints gbc_lblNewLabel_5 = new GridBagConstraints();
-		gbc_lblNewLabel_5.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_5.gridx = 6;
-		gbc_lblNewLabel_5.gridy = 1;
-		add(lblNewLabel_5, gbc_lblNewLabel_5);
+		popularidad = new JLabel(String.valueOf(p.getPopularidad())+" %");
+		GridBagConstraints gbc_popularidad = new GridBagConstraints();
+		gbc_popularidad.insets = new Insets(0, 0, 5, 5);
+		gbc_popularidad.gridx = 6;
+		gbc_popularidad.gridy = 1;
+		add(popularidad, gbc_popularidad);
 		
 		JLabel lblNewLabel_3 = new JLabel("Corrupcion");
 		GridBagConstraints gbc_lblNewLabel_3 = new GridBagConstraints();
@@ -96,12 +99,12 @@ public class PantallaNuevaPartida extends JPanel{
 		gbc_lblNewLabel_3.gridy = 1;
 		add(lblNewLabel_3, gbc_lblNewLabel_3);
 		
-		JLabel lblNewLabel_6 = new JLabel(String.valueOf(p.getPuntosCorrupcion()));
-		GridBagConstraints gbc_lblNewLabel_6 = new GridBagConstraints();
-		gbc_lblNewLabel_6.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_6.gridx = 9;
-		gbc_lblNewLabel_6.gridy = 1;
-		add(lblNewLabel_6, gbc_lblNewLabel_6);
+		corrupcion = new JLabel(String.valueOf(p.getPuntosCorrupcion()));
+		GridBagConstraints gbc_corrupcion = new GridBagConstraints();
+		gbc_corrupcion.insets = new Insets(0, 0, 5, 5);
+		gbc_corrupcion.gridx = 9;
+		gbc_corrupcion.gridy = 1;
+		add(corrupcion, gbc_corrupcion);
 		
 		preguntaLabel = new JLabel(this.pregunta);
 		preguntaLabel.setBackground(Color.GRAY);
@@ -117,7 +120,10 @@ public class PantallaNuevaPartida extends JPanel{
 		respuesta1Label = new JButton(this.respuesta1);
 		respuesta1Label.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				siguientePaso(p,(byte) 0);
+				operaciones(p,(byte) 0);
+				limpieza();
+				siguientePaso(p);
+				decisionOp(p);
 
 			}
 		});
@@ -133,7 +139,10 @@ public class PantallaNuevaPartida extends JPanel{
 		respuesta2Label.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				siguientePaso(p,(byte) 1);
+				operaciones(p,(byte) 1);
+				limpieza();
+				siguientePaso(p);
+				decisionOp(p);
 
 			}
 		});
@@ -149,8 +158,10 @@ public class PantallaNuevaPartida extends JPanel{
 		respuesta3Label.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				siguientePaso(p,(byte) 2);
-				
+				operaciones(p,(byte) 2);
+				limpieza();
+				siguientePaso(p);
+				decisionOp(p);
 				
 			}
 		});
@@ -166,49 +177,83 @@ public class PantallaNuevaPartida extends JPanel{
 		
 	}
 	
-	public void siguientePaso(Partida p, byte num) {
+	public void siguientePaso(Partida p) {
 		
-		if(!decisiones.isEmpty()) {
-		this.pregunta=decisiones.get(0).getPregunta();
-		respuestas=decisiones.get(0).getRespuestas();
-		//System.out.println("Pregunta: "+this.pregunta);
-		this.respuesta1=respuestas.get(0).getRespuesta();
-		this.respuesta2=respuestas.get(1).getRespuesta();
-		this.respuesta3=respuestas.get(2).getRespuesta();
-		//System.out.println(respuestas.size());
-		//System.out.println("Respuesta: "+respuesta1);
-		this.preguntaLabel.setText(this.pregunta);
-		this.respuesta1Label.setText(this.respuesta1);
-		this.respuesta2Label.setText(this.respuesta2);
-		this.respuesta3Label.setText(this.respuesta3);
 		
+		
+		
+		//
+		if(p.getPresupuesto()<=0||p.getPopularidad()<=0) {
+			JOptionPane.showMessageDialog(ventana,"Has Perdido la partida",
+					"Haber estudiao",JOptionPane.INFORMATION_MESSAGE);
+			ventana.irAPantalla("menuPrincipal");
+		
+		
+		}else if(decisiones.isEmpty()){
+			JOptionPane.showMessageDialog(ventana,"Juego Terminado "+ventana.usuarioLogado.getNombreUsuario(),
+				"Finalizando",JOptionPane.INFORMATION_MESSAGE);
+			ventana.irAPantalla("menuPrincipal");
+		}else {
+			this.pregunta=decisiones.get(0).getPregunta();
+			respuestas=decisiones.get(0).getRespuestas();
+			//System.out.println("Pregunta: "+this.pregunta);
+			this.respuesta1=respuestas.get(0).getRespuesta();
+			this.respuesta2=respuestas.get(1).getRespuesta();
+			this.respuesta3=respuestas.get(2).getRespuesta();
+
+			//System.out.println(respuestas.size());
+			//System.out.println("Respuesta: "+respuesta1);
+			this.preguntaLabel.setText(this.pregunta);
+			this.respuesta1Label.setText(this.respuesta1);
+			this.respuesta2Label.setText(this.respuesta2);
+			this.respuesta3Label.setText(this.respuesta3);
+		}
+	}
+	
+	public void operaciones (Partida p, byte num) {
+		/*
 		if(num==0) {
 			p.sumarPresupuesto(respuestas.get(0).getPresupuesto());
-			System.out.println(respuestas.get(num).getRespuesta());
-			System.out.println(respuestas.get(num).getPresupuesto());
-			System.out.println(String.valueOf(p.getPresupuesto()));
-			System.out.println("res1");
+			p.sumarPopularidad(respuestas.get(0).getPopularidad());
+			p.sumarPuntosCorrupcion(respuestas.get(0).getPuntosCorrupcion());
 		}else if (num==1) {
 			p.sumarPresupuesto(respuestas.get(1).getPresupuesto());
-			System.out.println(respuestas.get(num).getRespuesta());
-			System.out.println(respuestas.get(num).getPresupuesto());
-			System.out.println(String.valueOf(p.getPresupuesto()));
+			p.sumarPopularidad(respuestas.get(1).getPopularidad());
+			p.sumarPuntosCorrupcion(respuestas.get(1).getPuntosCorrupcion());
 
 		}else if(num==2) {
 			p.sumarPresupuesto(respuestas.get(2).getPresupuesto());
-			System.out.println(respuestas.get(num).getRespuesta());
-			System.out.println(respuestas.get(num).getPresupuesto());
-			System.out.println(String.valueOf(p.getPresupuesto()));
+			p.sumarPopularidad(respuestas.get(2).getPopularidad());
+			p.sumarPuntosCorrupcion(respuestas.get(2).getPuntosCorrupcion());
 		}
-		
+		*/
+		if (num>=0&&num<=2) {
+			p.sumarPresupuesto(respuestas.get(num).getPresupuesto());
+			p.sumarPopularidad(respuestas.get(num).getPopularidad());
+			p.sumarPuntosCorrupcion(respuestas.get(num).getPuntosCorrupcion());
+			//System.out.println("op");
+		}
 		this.presupuesto.setText(p.getPresupuesto()+" MM€");
+		this.popularidad.setText(p.getPopularidad()+" %");
+		this.corrupcion.setText(String.valueOf(p.getPuntosCorrupcion()));
 
+	}
+	public void decisionOp (Partida p) {
+		try {
+		p.sumarPresupuesto(decisiones.get(0).getPresupuesto());
+		p.sumarPopularidad(decisiones.get(0).getPopularidad());
+		p.sumarPuntosCorrupcion(decisiones.get(0).getModificadorCorrupcion());
+		this.presupuesto.setText(p.getPresupuesto()+" MM€");
+		this.popularidad.setText(p.getPopularidad()+" %");
+		this.corrupcion.setText(String.valueOf(p.getPuntosCorrupcion()));
+		
+		}catch(IndexOutOfBoundsException e) {
+			System.out.println("Error controlado");
+		}
+	}
+	
+	public void limpieza () {
 		decisiones.remove(0);
 		respuestas=null;
-		}else {
-		JOptionPane.showMessageDialog(ventana,"Juego Terminado "+ventana.usuarioLogado.getNombreUsuario(),
-				"Finalizando",JOptionPane.INFORMATION_MESSAGE);
-		ventana.irAPantalla("menuPrincipal");
-		}
 	}
 }

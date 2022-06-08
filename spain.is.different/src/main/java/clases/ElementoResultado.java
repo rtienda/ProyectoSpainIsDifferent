@@ -32,7 +32,6 @@ abstract public class ElementoResultado {
 		
 		if(this.presupuesto+pr>=0) {
 			this.presupuesto+=pr;
-			System.out.println("Esta sumando");
 		}else {
 			this.presupuesto=0;
 		}

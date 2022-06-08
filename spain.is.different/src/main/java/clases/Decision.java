@@ -87,15 +87,12 @@ public class Decision extends ElementoConAtributosPorcentuales{
 			while (cursor.next()) {
 				this.idPregunta=cursor.getShort("id");
 				this.pregunta=cursor.getString("texto");
-				this.sumarPresupuesto(cursor.getInt("presupuesto"));
+				/*
+				this.sumarPresupuesto(cursor.getFloat("presupuesto"));
 				this.sumarPopularidad(cursor.getByte("popularidad"));
-				this.sumarPuntosCorrupcion(cursor.getInt("puntosCorrupcion"));
-				System.out.println(idPregunta);
-				System.out.println(idPregunta);
-				System.out.println(idPregunta);
-				System.out.println(idPregunta);
-				System.out.println("goes brrr");
-				
+				this.sumarPuntosCorrupcion(cursor.getFloat("puntosCorrupcion"));
+				System.out.println(cursor.getFloat("presupuesto"));
+				*/
 
 				Statement query2 = ConexionBD.conectar();
 				
@@ -113,7 +110,7 @@ public class Decision extends ElementoConAtributosPorcentuales{
 						//System.out.println("tamaño: "+respuestas.size());
 
 				}
-				Decision decision1= new Decision(this.idPregunta,this.getPuntosCorrupcion(),this.getPresupuesto(),this.getPopularidad(),
+				Decision decision1= new Decision(this.idPregunta,cursor.getFloat("puntosCorrupcion"),cursor.getFloat("presupuesto"),cursor.getByte("popularidad"),
 						getModificadorPresupuesto(),getModificadorPopularidad(),getModificadorCorrupcion(),this.pregunta,respuestas);
 				p.getDecision().add(decision1);
 				//System.out.println("el tamaño es: "+respuestas.size()+ " -------");
@@ -138,7 +135,7 @@ public class Decision extends ElementoConAtributosPorcentuales{
 	@Override
 	public String toString() {
 		return "Decision [pregunta=" + pregunta + ", respuestas=" + respuestas + ", textoEvento=" + textoEvento
-				+ ", idPregunta=" + idPregunta + "]";
+				+ ", idPregunta=" + idPregunta + "]"+super.toString();
 	}
 	
 	
