@@ -20,23 +20,27 @@ abstract public class ElementoResultado {
 	}
 
 	public void sumarPuntosCorrupcion(float pc) {
+		/*
 		if(!Globals.cheating) {
 			this.puntosCorrupcion+=pc;
 			
 		}
+		*/
+		this.puntosCorrupcion+=pc;
+
 	}
 	public float getPresupuesto() {
 		return presupuesto;
 	}
 	public void sumarPresupuesto(float pr) {
 		
-		if(this.presupuesto+pr>=0) {
-			this.presupuesto+=pr;
-		}else {
-			this.presupuesto=0;
-		}
-		if(!Globals.cheating) {
 		
+		if(!Globals.cheating) {
+			if(this.presupuesto+pr>=0) {
+				this.presupuesto+=pr;
+			}else {
+				this.presupuesto=0;
+			}
 		}
 	}
 	public byte getPopularidad() {
