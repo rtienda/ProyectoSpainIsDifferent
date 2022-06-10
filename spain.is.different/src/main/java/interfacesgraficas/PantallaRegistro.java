@@ -22,13 +22,31 @@ import java.awt.GridLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.Color;
-//spain
+/**
+ * Clase PantallaRegistro clase que extiende JPanel y que consiste en mostrar una interfaz grafica que nos permite registrar unos valores para poder registrar nuestro usuario en la BBDD
+ * @author Rafa
+ */
 public class PantallaRegistro extends JPanel{
+	/**
+	 * Variable ventana  de tipo Ventana donde se guardará la variable JFrame que vendrá pasado por las funciones.
+	 */
 	private Ventana ventana;
+	/**
+	 * Variable campoEmail de tipo JTextField donde se recogerá el dato del email del usuario.
+	 */
 	private JTextField campoEmail;
+	/**
+	 * Variable campoContraseña de tipo JPasswordField donde se recogerá el dato de la contraseña del usuario.
+	 */
 	private JPasswordField campoContraseña;
+	/**
+	 * Variable campoUsuario de tipo JTextField donde se recogerá el dato del nombre del usuario.
+	 */
 	private JTextField campoUsuario;
-
+	/**
+	 * Constructor PantallaRegistro  que recibe por parametros la variable de tipo Ventana que es la clase del JFrame.
+	 * @param v variable de tipo Ventana que recoge la interfaz grafica de la ventana en la que se situara esta interfaz gráfica.
+	 */
 	public PantallaRegistro(Ventana v) {
 		
 
@@ -87,9 +105,11 @@ public class PantallaRegistro extends JPanel{
 		add(campoContraseña, gbc_campoContraseña);
 		
 
-		//JButton botonRegistrarse = new JButton("Registrarse");
 		
 		JButton botonAtras = new JButton("Atr\u00E1s");
+		/**
+		 * Funcion mouseClicked que se ejecuta cuando recibe el evento del raton en su JButton por su parametro e. Esta funcion lleva al usuario a la pagina de Login.
+		 */
 		botonAtras.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -132,6 +152,9 @@ public class PantallaRegistro extends JPanel{
 		
 		botonRegistrarse.addMouseListener(new MouseAdapter() {
 			@Override
+			/**
+			 * Funcion mouseClicked que se ejecuta cuando recibe el evento del raton en su JButton por su parametro e. Esta funcion se encarga de crear un nuevo objeto usuario a partir de los datos introducidos en los campos de la ventana, luego si no se ha producido ningun error te llevara a la pantalla login.
+			 */
 			public void mouseClicked(MouseEvent e) {
 				String nombreUsuario=campoUsuario.getText();
 				String contraseña=new String(campoContraseña.getPassword());

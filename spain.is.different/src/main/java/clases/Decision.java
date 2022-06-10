@@ -102,7 +102,9 @@ public class Decision extends ElementoConAtributosPorcentuales{
 				respuestas = new ArrayList<Respuesta>();
 				while(cursor2.next()) {
 						
-						Respuesta respuesta = new Respuesta(cursor2.getInt("puntosCorrupcion"),cursor2.getInt("presupuesto"), cursor2.getByte("popularidad"), cursor2.getString("texto"), cursor2.getString("modificadorCodigo"));
+						Respuesta respuesta = new Respuesta(cursor2.getInt("puntosCorrupcion"),
+								cursor2.getInt("presupuesto"), cursor2.getByte("popularidad"), 
+								cursor2.getString("texto"), cursor2.getString("modificadorCodigo"));
 						respuestas.add(respuesta);
 						//System.out.println(respuesta);
 						

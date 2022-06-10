@@ -8,11 +8,23 @@ import javax.swing.JPanel;
 
 import clases.Partida;
 import clases.Usuario;
-
+/**
+ * Clase Ventana extiende JFrame, aqui se define los atributos de la ventana base de nuestro proyecto a nivel de interfaces graficas, aqui definiremos que paneles se iran cambiando
+ * @author Rafa
+ *
+ */
 public class Ventana extends JFrame{
-
+	/**
+	 * Variable pantallaActual de tipo JPanel será la variable que cotendra la pagina actual que muestre en el JFrame
+	 */
 	private JPanel pantallaActual;
+	/**
+	 * Variable usuarioLogado de tipo Usuario que es la variable del objeto que se cree cuando un usuario se loguee con exito en nuestro programa
+	 */
 	protected Usuario usuarioLogado;
+	/**
+	 * Variable partida de tipo Partida 
+	 */
 	protected Partida partida;
 	public Ventana(){
 		//this.setExtendedState(JFrame.MAXIMIZED_BOTH);
