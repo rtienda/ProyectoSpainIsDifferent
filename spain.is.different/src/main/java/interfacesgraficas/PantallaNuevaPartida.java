@@ -21,14 +21,41 @@ import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+/**
+ * Clase PantallaNuevaPartida que extiende JPanel, en esta pantalla se forma el display de la partida con sus variables, preguntas, decisiones, eventos y megaproyectos
+ * @author Rafa
+ *
+ */
 public class PantallaNuevaPartida extends JPanel{
 
+	/**
+	 * Variable ventana  de tipo Ventana donde se guardará la variable JFrame que vendrá pasado por las funciones.
+	 */
 	private Ventana ventana;
+	
+	/**
+	 * Variable decisiones de tipo ArrayList<Decisiones> que guardara el listado de decisiones
+	 */
 	private ArrayList<Decision> decisiones;
+	/**
+	 * Variable respuestas de tipo ArrayList<Respuesta> que guardara el listado de respuestas
+	 */
 	protected ArrayList<Respuesta> respuestas;
+	/**
+	 * Variable pregunta de tipo String que servira para mostrar la pregunta actual en la ventana
+	 */
 	private String pregunta;
+	/**
+	 * Variable respuesta1 de tipo String que servira para mostrar la respuesta en la ventana
+	 */
 	private String respuesta1;
+	/**
+	 * Variable respuesta2 de tipo String que servira para mostrar la respuesta en la ventana
+	 */
 	private String respuesta2;
+	/**
+	 * Variable respuesta3 de tipo String que servira para mostrar la respuesta en la ventana
+	 */
 	private String respuesta3;
 	private JLabel preguntaLabel = new JLabel();
 	private JButton respuesta1Label = new JButton();
@@ -38,20 +65,16 @@ public class PantallaNuevaPartida extends JPanel{
 	private JLabel popularidad = new JLabel();
 	private JLabel corrupcion = new JLabel();
 
-	
+	/**
+	 * Contructor PantallaNuevaPartida donde se creara la pagina de la partida y se haran las decisiones de la partida
+	 * @param v de tipo Ventana que pasara la variable de la ventana donde estara el panel
+	 * @param p de tipo Partida que pasara la variable de la partida que se ha creado.
+	 */
 	public PantallaNuevaPartida (Ventana v,Partida p) {
 		this.ventana=v;
 		p.ronda();
 		decisiones=p.getDecisiones();
 
-		/*
-		decisiones=p.getDecisiones();
-		pregunta=decisiones.get(0).getPregunta();
-		respuestas=decisiones.get(0).getRespuestas();
-		respuesta1=respuestas.get(0).getRespuesta();
-		respuesta2=respuestas.get(1).getRespuesta();
-		respuesta3=respuestas.get(2).getRespuesta();
-		*/
 		siguientePaso(p);
 		
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -119,6 +142,10 @@ public class PantallaNuevaPartida extends JPanel{
 		
 		respuesta1Label = new JButton(this.respuesta1);
 		respuesta1Label.addMouseListener(new MouseAdapter() {
+			/**
+			 * Funcion mouseClicked en ella se llamaran a las funciones que realizaran todos los eventos al seleccionar la respuesta
+			 * @param e de tipo MouseEvent que le pasara el evento de raton
+			 */
 			public void mouseClicked(MouseEvent e) {
 				operaciones(p,(byte) 0);
 				limpieza();
@@ -137,7 +164,11 @@ public class PantallaNuevaPartida extends JPanel{
 		
 		respuesta2Label = new JButton(respuesta2);
 		respuesta2Label.addMouseListener(new MouseAdapter() {
-			@Override
+		
+			/**
+			 * Funcion mouseClicked en ella se llamaran a las funciones que realizaran todos los eventos al seleccionar la respuesta
+			 * @param e de tipo MouseEvent que le pasara el evento de raton
+			 */
 			public void mouseClicked(MouseEvent e) {
 				operaciones(p,(byte) 1);
 				limpieza();
@@ -156,7 +187,11 @@ public class PantallaNuevaPartida extends JPanel{
 		
 		respuesta3Label = new JButton(respuesta3);
 		respuesta3Label.addMouseListener(new MouseAdapter() {
-			@Override
+
+			/**
+			 * Funcion mouseClicked en ella se llamaran a las funciones que realizaran todos los eventos al seleccionar la respuesta
+			 * @param e de tipo MouseEvent que le pasara el evento de raton
+			 */
 			public void mouseClicked(MouseEvent e) {
 				operaciones(p,(byte) 2);
 				limpieza();
@@ -173,21 +208,19 @@ public class PantallaNuevaPartida extends JPanel{
 		gbc_respuesta3Label.gridy = 9;
 		add(respuesta3Label, gbc_respuesta3Label);
 
-		
-		
 	}
+
 	
+	/**
+	 * Funcion siguientePaso en la que se comprueba si se ha perdido o ganado la partida en cada click sobre una respuesta, ademas se reestablecen las siguientes respuestas y decisiones.
+	 * @param p de tipo Partida, se le pasara la variable de la partida actual.
+	 */
 	public void siguientePaso(Partida p) {
-		
-		
-		
-		
-		//
+	
 		if(p.getPresupuesto()<=0||p.getPopularidad()<=0) {
 			JOptionPane.showMessageDialog(ventana,"Has Perdido la partida",
 					"Haber estudiao",JOptionPane.INFORMATION_MESSAGE);
 			ventana.irAPantalla("menuPrincipal");
-		
 		
 		}else if(decisiones.isEmpty()){
 			JOptionPane.showMessageDialog(ventana,"Juego Terminado "+ventana.usuarioLogado.getNombreUsuario(),
@@ -210,34 +243,28 @@ public class PantallaNuevaPartida extends JPanel{
 		}
 	}
 	
+	/**
+	 * Funcion operaciones, realizara las operciones de suma y resta de los valores presupuesto, popularidad y corrupcion
+	 * @param p de tipo Partida, se le pasara la variable de la partida actual.
+	 * @param num de tipo byte se le pasara el numero de la respuesta 
+	 */
 	public void operaciones (Partida p, byte num) {
-		/*
-		if(num==0) {
-			p.sumarPresupuesto(respuestas.get(0).getPresupuesto());
-			p.sumarPopularidad(respuestas.get(0).getPopularidad());
-			p.sumarPuntosCorrupcion(respuestas.get(0).getPuntosCorrupcion());
-		}else if (num==1) {
-			p.sumarPresupuesto(respuestas.get(1).getPresupuesto());
-			p.sumarPopularidad(respuestas.get(1).getPopularidad());
-			p.sumarPuntosCorrupcion(respuestas.get(1).getPuntosCorrupcion());
-
-		}else if(num==2) {
-			p.sumarPresupuesto(respuestas.get(2).getPresupuesto());
-			p.sumarPopularidad(respuestas.get(2).getPopularidad());
-			p.sumarPuntosCorrupcion(respuestas.get(2).getPuntosCorrupcion());
-		}
-		*/
+		
 		if (num>=0&&num<=2) {
 			p.sumarPresupuesto(respuestas.get(num).getPresupuesto());
 			p.sumarPopularidad(respuestas.get(num).getPopularidad());
 			p.sumarPuntosCorrupcion(respuestas.get(num).getPuntosCorrupcion());
-			//System.out.println("op");
 		}
 		this.presupuesto.setText(p.getPresupuesto()+" MM€");
 		this.popularidad.setText(p.getPopularidad()+" %");
 		this.corrupcion.setText(String.valueOf(p.getPuntosCorrupcion()));
 
 	}
+	
+	/**
+	 * Funcion decisionOp suma los valores de las decisiones a las variables de la partida y actualiza los textos
+	 * @param p de tipo Partida, se le pasara la variable de la partida actual.
+	 */
 	public void decisionOp (Partida p) {
 		try {
 		p.sumarPresupuesto(decisiones.get(0).getPresupuesto());
@@ -251,7 +278,9 @@ public class PantallaNuevaPartida extends JPanel{
 			System.out.println("Error controlado");
 		}
 	}
-	
+	/**
+	 * Funcion limpieza, limpia el array respuestas y quita la primera decision del array decisiones
+	 */
 	public void limpieza () {
 		decisiones.remove(0);
 		respuestas=null;
