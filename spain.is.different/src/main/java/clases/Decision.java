@@ -7,18 +7,44 @@ import java.util.ArrayList;
 
 import utils.ConexionBD;
 
+/**
+ * Clase Decision donde se crearan las decisiones.
+ * @author Rafa
+ *
+ */
 public class Decision extends ElementoConAtributosPorcentuales{
-
+	/**
+	 * Variable pregunta de tipo String
+	 */
 	private String pregunta;
+	/**
+	 * Variable respuestas de tipo ArrayList<Respuesta> inicializada vacia
+	 */
 	ArrayList<Respuesta> respuestas = new ArrayList<Respuesta>();
-	String textoEvento;
+	/**
+	 * Variable idPregunta de tipo short
+	 */
 	private short idPregunta;
 	
-	
+	/**
+	 * Constructor Decision vacio
+	 */
 	public Decision() {
 		super();
 	}
 	
+	/**
+	 * Constructor Decision
+	 * @param idPregunta de tipo short
+	 * @param puntosCorrupcion de tipo float
+	 * @param presupuesto de tipo float
+	 * @param popularidad de tipo byte
+	 * @param modificadorPresupuesto de tipo float
+	 * @param modificadorPopularidad de tipo float
+	 * @param modificadorCorrupcion de tipo float
+	 * @param pregunta de tipo String
+	 * @param respuestas de tipo ArrayList<Respuesta>
+	 */
 	public Decision(short idPregunta,float puntosCorrupcion, float presupuesto, byte popularidad, float modificadorPresupuesto,
 			float modificadorPopularidad, float modificadorCorrupcion, String pregunta,
 			ArrayList<Respuesta> respuestas/*, String textoEvento*/) {
@@ -27,56 +53,36 @@ public class Decision extends ElementoConAtributosPorcentuales{
 		this.idPregunta= idPregunta;
 		this.pregunta = pregunta;
 		this.respuestas = respuestas;
-		this.textoEvento = textoEvento;
+
 	}
-
-
-
+	/**
+	 * Funcion getPregunta que devuelve la pregunta
+	 * @return pregunta de tipo String
+	 */
 	public String getPregunta() {
 		return pregunta;
 	}
 
-
-
-	public void setPregunta(String pregunta) {
-		this.pregunta = pregunta;
-	}
-
-
-
+	/**
+	 * Funcion getRespuestas que devuelve el ArrayList de respuestas de la decision
+	 * @return respuesta de tipo ArrayList<Respuesta>
+	 */
 	public ArrayList<Respuesta> getRespuestas() {
 		return respuestas;
 	}
 
-
-
-	public void setRespuestas(ArrayList<Respuesta> respuestas) {
-		this.respuestas = respuestas;
-	}
-
-
-
-	public String getTextoEvento() {
-		return textoEvento;
-	}
-
-
-
-	public void setTextoEvento(String textoEvento) {
-		this.textoEvento = textoEvento;
-	}
-	
+	/**
+	 * Funcion getIdPregunta que devuelve el id de la pregunta
+	 * @return idPregunta de tipo short
+	 */
 	public short getIdPregunta() {
 		return idPregunta;
 	}
 
-
-
-	public void setIdPregunta(short idPregunta) {
-		this.idPregunta = idPregunta;
-	}
-
-	
+	/**
+	 * Funcion decisionesListado, se encarga de recoger las preguntas y las respuestas de cada decision para poder crear un arrayList de decisiones completo para el programa
+	 * @return p.getDecision() que devolvera todo el listado de Decisiones.
+	 */
 	public  ArrayList<Decision> decisionesListado(){
 		ResultSet cursor = null;
 		Statement smt = ConexionBD.conectar();
@@ -121,24 +127,22 @@ public class Decision extends ElementoConAtributosPorcentuales{
 				cursor2.close();
 
 			}
-			
 			cursor.close();
-
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		}finally {
 			ConexionBD.desconectar();
-
 		}
 		return p.getDecision();
 	}
-	@Override
+	/**
+	 * Funcion toString que imprimira todos los valores de la decision.
+	 */
 	public String toString() {
-		return "Decision [pregunta=" + pregunta + ", respuestas=" + respuestas + ", textoEvento=" + textoEvento
+		return "Decision [pregunta=" + pregunta + ", respuestas=" + respuestas
 				+ ", idPregunta=" + idPregunta + "]"+super.toString();
 	}
-	
 	
 }

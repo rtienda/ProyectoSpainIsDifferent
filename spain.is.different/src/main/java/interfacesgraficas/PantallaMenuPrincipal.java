@@ -2,6 +2,8 @@ package interfacesgraficas;
 
 import javax.swing.JPanel;
 import java.awt.GridBagLayout;
+import java.awt.Image;
+
 import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -9,6 +11,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.awt.Font;
+
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 
@@ -36,10 +41,20 @@ public class PantallaMenuPrincipal extends JPanel{
 		this.ventana=v;
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0, 0, 91, 0, 0, 0, 0};
-		gridBagLayout.rowHeights = new int[]{41, 0, 0, 20, 54, 0, 40, 18, 10, 18, 0, 0, 0, 0};
+		gridBagLayout.rowHeights = new int[]{41, 35, 0, 20, 54, 0, 40, 18, 10, 18, 0, 0, 0, 0};
 		gridBagLayout.columnWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
+		
+		Image imagen=new ImageIcon("../Imagenes/iconoEspania.png").getImage().getScaledInstance(200,175,Image.SCALE_DEFAULT);
+		JLabel imageLabel = new JLabel();
+		Icon icono = new ImageIcon(imagen);
+		imageLabel.setIcon(icono);
+		GridBagConstraints gbc_imagen = new GridBagConstraints();
+		gbc_imagen.insets = new Insets(0, 0, 5, 5);
+		gbc_imagen.gridx = 3;
+		gbc_imagen.gridy = 1;
+		add(imageLabel, gbc_imagen);
 		
 		JLabel lblNewLabel = new JLabel("Spain Is Different");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
